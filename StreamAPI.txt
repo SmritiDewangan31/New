@@ -1,0 +1,251 @@
+Stream API 
+
+1. What is Java 8 Stream API?  
+	:The Stream API is a new feature introduced in Java 8 that provides a functional approach to processing collections of data. 
+
+	It allows us to write concise and readable code for operations like filtering, transforming, and aggregating data. 
+
+2. What are the benefits of using Stream API? 
+
+	Concise and readable code: Lambda expressions and method references make code cleaner. 
+
+	Improved performance: Streams can utilize parallel processing for efficient data handling. 
+
+	Immutable data processing: Streams don't modify the original collection, promoting functional programming principles. 
+
+3.	What's the difference between a Stream and a Collection? 
+
+	*Collections store data, while Streams represent a sequence of operations on that data. 
+	
+	*Collections are mutable, while Streams are immutable. 
+
+	Stream API 
+ 	*It was introduced in Java 8 Standard Edition version. 
+	*There is no use of the Iterator 
+	*An infinite number of features can be stored. 
+	*Consumption and Iteration of elements from the Stream object can be done only once. 
+	*It is used to compute data. 
+	
+	Collection API 
+	*It was introduced in Java version 1.2 
+	*With the help of forEach, we can use the Iterator and Spliterators to iterate the elements and perform an action on each item or element. 
+	*A countable number of elements can be stored. 
+	*Consumption and Iteration of elements from the Collection object can be done multiple times. 
+	*It is used to store data. 
+ 
+
+4. What are Intermediate Operations in Streams? 
+
+	:Intermediate operations transform the elements of a Stream without producing a final result. Examples include map, filter, sorted, etc.  
+
+5. Explain the map operation. 
+
+	:The map() function perform map functional operation in Java. This means it can transform one type of object to others by applying a function. 
+
+	*For example, if you have a List of String and you want to convert that to a List of Integer, you can use map() to do so. 
+
+	*Just supply a function to convert String to Integer e.g., parseInt() to map() and it will apply that to all elements of List and give you a List of Integer. In other words, the map can convert one object to another.  
+
+ 
+
+	• Old style 
+		Arrays.sort(testStrings, new Comparator<String>() { 
+		@Override 
+		public int com a (String sl, String s2) { 
+		return(sl .length() - s2.length()); 
+
+	*New style 
+		Arrays.sort(testStrings, 
+		sl, s2 -> return sl.len th—s2.Ien th 
+ 
+
+6. Explain the filter operation. 
+
+	:The filter operation creates a new Stream containing only elements that match a given predicate (boolean-valued function). 
+
+	*The filter method is used to filter elements that satisfy a certain condition that is specified using a Predicate function. 
+
+	*A predicate function is nothing but a function that takes an Object and returns a boolean. For example, if you have a List of Integer and you want a list of even integers. 
+
+	*In this case, you can use the filter to achieve that. You supply a function to check if a number is even or odd, just like this function, and filter will apply this to stream elements and filter the elements which satisfy the condition and which don't. 
+
+7.  What is the difference between flatMap() and map() functions?  
+
+	*Even though both map() and flatMap() can be used to transform one object to another by applying a method to each element. 
+
+	*The main difference is that flatMap() can also flatten the Stream. For example, if you have a list of the list, then you can convert it to a big list by using the flatMap() function.  
+
+8. Explain the sorted operation. 
+
+	*The sorted operation sorts the elements of a Stream in natural order or according to a custom comparator. 
+
+9. What are Terminal Operations in Streams? 
+
+	:Terminal operations consume the elements of a Stream and produce a final result. They mark the end of the Stream processing pipeline. 
+
+10. What is the difference between intermediate and terminal operations on Stream?  
+
+	*The intermediate Stream operation returns another Stream, which means you can further call other methods of Stream class to compose a pipeline. 
+
+	*For example after calling map() or flatMap() you can still call filter() method on Stream. 
+
+	*On the other hand, the terminal operation produces a result other than Streams like a value or a Collection. 
+
+	*Once a terminal method like forEach() or collect() is called, you cannot call any other method of Stream or reuse the Stream.  
+
+11. Explain the forEach operation. 
+
+	*The forEach operation performs an action on each element of a Stream. It doesn't return a result . 
+
+
+12.Explain the count operation. 
+
+	*The count operation returns the number of elements in a Stream. 
+
+
+13. Explain the findFirst operation. 
+
+	*The findFirst operation returns an Optional containing the first element of the Stream that matches the predicate (if present). 
+
+14. Explain the collect operation. 
+
+	*The collect operation allows you to collect the elements of a Stream into a new data structure (e.g., List, Set) using a Collector. 
+
+15.What do you mean by saying Stream is lazy?  
+
+	*When we say Stream is lazy, we mean that most of the methods are defined on Java .util.stream.Stream class is lazy i.e. they will not work by just including them on the Stream pipeline. 
+
+	*They only work when you call a terminal method on the Stream and finish as soon as they find the data they are looking for rather than scanning through the whole set of data. 
+  
+
+16. How do you handle null values in Streams? 
+
+	*We can use methods like filter to exclude nulls . 
+
+
+17. What are some common mistakes to avoid while using Streams? 
+
+	*Forgetting terminal operations: A Stream without a terminal operation won't be processed. 
+
+	*Using mutable operations within Streams: Streams are designed for immutable data processing. 
+
+
+18. Can you convert an array to Stream? How?  
+
+	*Yes, you can convert an array to Stream in Java. The Stream class provides a factory method to create a Stream from an array, like Stream .of(T ...) which accepts a variable argument, that means you can also pass an array to it as shown in the following example: 
+
+		int[] numbers = {1, 2, 3, 4, 5}; 	
+		 // Convert array to Stream of integers 
+		IntStream numberStream = Arrays.stream(numbers); 
+		// We can now use Stream operations on numberStream 
+		numberStream.forEach(System.out::println);  // Print each element 
+
+19. What distinguishes findFirst() from findAny() in the Stream object? 
+
+	*The findAny() method is used to find any element from the Stream, but the findFirst() method is used to discover the first element from the Stream, as the name implies. 
+
+	*While the findAny() is non-deterministic, the findFirst() is predestinarian in nature. Deterministic programming refers to a system where the outcome is determined by the input or beginning state. 
+
+
+20. The parllel Stream is what? How can a List be converted into a parallel stream? 
+
+	* Stream processing tasks can be carried out in parallel using a parallel stream. A filter can help you find orders worth more than $1 million, for instance, if you have a parallel stream of 1 million orders. 
+
+	 	The parallel Stream, as opposed to the sequential Stream, can start numerous threads to look for such orders on various parts of the Stream, then combine the results. 
+
+		By default, all stream operations are sequential in Java unless explicitly specified as parallel. Parallel streams are created in Java in two ways. 
+
+		Calling the parallel() method on a sequential stream. Calling parallelStream() method on a collection. 
+
+		Parallel streams are useful when we have many independent tasks that can be processed simultaneously to minimize the running time of the program. 
+
+		All the Java code will usually have only one processing stream, where it is sequentially executed. But by using parallel streams, one can separate the Java code into more than one stream, which is executed in parallel on their separate cores, and the result is the combination of the individual results. 
+
+		The order in which they are executed is not in our control. Hence, it is suggested to use a parallel stream when the order of execution of individual items does not affect the final result. 
+
+		Example: 
+
+			parallel(): parallel() method is called on the existing sequential stream to make it parallel. 
+
+			public class Main { 
+			public static void main(String[] args) { 
+			Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5); 
+ 
+			stream.parallel().forEach(System.out::println); 
+			} 
+			} 
+ 
+			Output: 
+			3 
+			5 
+			4 
+			1 
+			2	 
+
+		parallelStream(): parallelStream() is called on Java collections like List, Set, etc to make it a parallel stream.  
+
+		public class Main { 
+		public static void main(String[] args) { 
+		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5)); 
+ 
+		list.parallelStream().forEach(System.out::println); 
+		} 
+		} 
+ 
+		Output: 
+		3 
+		1 
+		5 
+		4 
+		2 
+
+ 
+
+21. What is predicate Interface in Java stream? 
+
+	:A Predicate is a functional interface that represents a function, which takes an Object and returns a boolean. 
+
+	It is used in several Stream methods like filter(), which uses Predicate to filter unwanted elements. 
+
+22. What does Java’8 Stream pipelining mean? 
+
+	*Chaining together operations is the idea behind Stream pipelining. To do this, we divide the possible operations on a stream into two groups: intermediate operations and terminal operations. 
+
+	*When an intermediate action completes, it produces an instance of Stream. As a result, we can create a processing pipeline with any number of intermediary processes to process data. 
+
+	*The pipeline must then be terminated by a terminal operation that returns a final value. 
+
+
+23. Write a code snippet to filter a list of numbers and find the sum of even numbers. 
+
+import java.util.Arrays; 
+
+import java.util.List; 
+
+  
+
+public class StreamSumExample { 
+
+    public static void main(String[] args) { 
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5); 
+
+  
+
+        int sumOfEvenNumbers = numbers.stream() 
+
+                                      .filter(number -> number % 2 == 0) 
+
+                                      .mapToInt(Integer::intValue)  // Optional for clarity, but not strictly necessary 
+
+                                      .sum(); 
+
+  
+
+        System.out.println("Sum of even numbers: " + sumOfEvenNumbers); 
+
+    } 
+
+} 
+
+ 
